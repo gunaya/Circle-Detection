@@ -55,12 +55,12 @@ def identifikasi(image):
 
         im2, contours, hierarchy = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL,
                                                     cv2.CHAIN_APPROX_SIMPLE)
-        im2 = cv2.GaussianBlur(im2, (9,9),0)
-        im2 = cv2.Canny(im2, 300, 400)
+        im2 = cv2.GaussianBlur(mask, (9,9),0)
+        im2 = cv2.Canny(im2, 200, 400)
         cv2.imshow("mask", im2)
         print("Dideteksi Sebanyak " + str(len(contours)) + " Contour " + key)
 
-        circles = cv2.HoughCircles(im2, cv2.HOUGH_GRADIENT, 2, 145, param1=200, param2=110, minRadius=0,
+        circles = cv2.HoughCircles(im2, cv2.HOUGH_GRADIENT, 2, 145, param1=200, param2=100, minRadius=0,
                                    maxRadius=1000)
         if circles is None:
             print("Circle not detected")
@@ -82,13 +82,13 @@ def identifikasi(image):
             return frame
     # cv2.imshow("a",img)
 
-image = cv2.imread('images/eye2.jpg')     #biru
+# image = cv2.imread('images/eye2.jpg')     #biru
 # image = cv2.imread('images/green.jpg')    #kkuning param2=100
 # image = cv2.imread('images/fruit.jpg')    #biru dan oranye
 # image = cv2.imread('images/ball.jpg')     #terdeteksi oranye dan kuning
 # image = cv2.imread('images/ima.jpeg')     #terdeteksi merah dan kuning
 # image = cv2.imread('images/fruit2.jpg')   #terdeteksi hijau
-# image = cv2.imread('images/ima1.jpeg')    #koin oranye param2=150
+image = cv2.imread('images/ima1.jpeg')    #koin oranye param2=150
 # image = cv2.imread('images/green.jpg')
 
 print("MASUKKAN INPUT")
