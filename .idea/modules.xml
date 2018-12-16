@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Circle Detection.iml" filepath="$PROJECT_DIR$/.idea/Circle Detection.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../determining-object-color/.idea/determining-object-color.iml" filepath="$PROJECT_DIR$/../determining-object-color/.idea/determining-object-color.iml" />
+    </modules>
+  </component>
+</project>
