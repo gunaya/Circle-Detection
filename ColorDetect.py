@@ -47,17 +47,21 @@ def identifikasi(image):
     # for each color in dictionary check object in frame
     for key, value in upper.items():
 
-        kernel = np.ones((3, 3), np.uint8)
+        kernel = np.ones((9, 9), np.uint8)
         mask = cv2.inRange(hsv, lower[key], upper[key])
-
+        cv2.imshow("t", mask)
         mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
+        cv2.imshow("opening", mask)
         mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)
-
+        cv2.imshow("closing", mask)
         im2, contours, hierarchy = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL,
                                                     cv2.CHAIN_APPROX_SIMPLE)
+
+        cv2.imshow("contours", im2)
         im2 = cv2.GaussianBlur(mask, (9,9),0)
+        cv2.imshow("Blur", im2)
         im2 = cv2.Canny(im2, 200, 400)
-        cv2.imshow("mask", im2)
+        cv2.imshow("Tepi", im2)
         print("Dideteksi Sebanyak " + str(len(contours)) + " Contour " + key)
 
         circles = cv2.HoughCircles(im2, cv2.HOUGH_GRADIENT, 2, 145, param1=200, param2=100, minRadius=0,
@@ -88,8 +92,8 @@ def identifikasi(image):
 # image = cv2.imread('images/ball.jpg')     #terdeteksi oranye dan kuning
 # image = cv2.imread('images/ima.jpeg')     #terdeteksi merah dan kuning
 # image = cv2.imread('images/fruit2.jpg')   #terdeteksi hijau
-image = cv2.imread('images/ima1.jpeg')    #koin oranye param2=150
-# image = cv2.imread('images/green.jpg')
+# image = cv2.imread('images/ima1.jpeg')    #koin oranye param2=150
+image = cv2.imread('images/fruit3.jpg')
 
 print("MASUKKAN INPUT")
 print("[M]erah, [H]ijau, [B]iru, [K]uning, [O]ranye")
